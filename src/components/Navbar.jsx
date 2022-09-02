@@ -1,6 +1,7 @@
-import React from 'react'
+import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
+  const nav = useNavigate();
   return (
 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
   <div className="container-fluid">
@@ -13,7 +14,7 @@ export const Navbar = () => {
 
       </ul>
 
-      <button className="btn btn-outline-secondary my-2 my-sm-0">
+      <button className="btn btn-outline-secondary my-2 my-sm-0" onClick={() => nav('/inserir')}>
         Inserir
       </button>
     </div>
