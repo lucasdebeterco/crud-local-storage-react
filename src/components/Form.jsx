@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../hooks/useForm';
+import { addPessoa } from '../services/localstorage';
 
 export const Form = () => {
     const nav = useNavigate();
@@ -11,7 +12,7 @@ export const Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(inputValues);
+        addPessoa(inputValues);
         resetForm();
     }
 

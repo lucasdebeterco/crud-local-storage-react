@@ -7518,6 +7518,11 @@
   optionalDependencies:
     "fsevents" "^2.3.2"
 
+"react-uuid@^1.0.3":
+  "integrity" "sha512-cw6Rr6JphvsdK4xHPGBjKD7XSH6Y6i4NJFWUO3OiDd7NLcR8xVeQ3CfeKm7h+S5tpZZVfbH3Tkrz/ydsIiV8pA=="
+  "resolved" "https://registry.npmjs.org/react-uuid/-/react-uuid-1.0.3.tgz"
+  "version" "1.0.3"
+
 "react@^18.0.0", "react@^18.2.0", "react@>= 16", "react@>=16.8":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"

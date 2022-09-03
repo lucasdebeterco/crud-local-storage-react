@@ -34,7 +34,6 @@ export const Lista = () => {
                         Sem pessoas cadastradas
                     </h3>
                 )
-
             }
         </div>
     )
