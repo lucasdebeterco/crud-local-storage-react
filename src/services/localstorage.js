@@ -27,3 +27,11 @@ export const editPessoa = (id, novaPessoa) => {
     pessoas.push(novaPessoa);
     localStorage['@pessoas'] = JSON.stringify(pessoas);
 }
+
+export const deletePessoa = (id) => {
+    let pessoas = getListaPessoas();
+    pessoas = pessoas.filter((pessoa) => pessoa.id !== id);
+    localStorage['@pessoas'] = JSON.stringify(pessoas);
+}
+
+

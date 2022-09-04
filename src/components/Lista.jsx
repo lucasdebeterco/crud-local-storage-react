@@ -25,7 +25,13 @@ export const Lista = () => {
                         </thead>
     
                         <tbody>
-                            { pessoas.map(pessoa => <Item pessoa={pessoa} key={pessoa.id} />) }
+                            { pessoas.map(pessoa => 
+                                <Item 
+                                    key={pessoa.id} 
+                                    pessoa={pessoa}
+                                    setPessoas={setPessoas}
+                                />
+                            ) }
                         </tbody>
                     </table>
                 </div>
