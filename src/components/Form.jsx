@@ -1,19 +1,33 @@
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from '../hooks/useForm';
-import { addPessoa } from '../services/localstorage';
+import { addPessoa, getPessoaById, editPessoa } from '../services/localstorage';
 
 export const Form = () => {
     const nav = useNavigate();
-    const { inputValues, handleInputChange, resetForm } = useForm({
+    const { id } = useParams();
+    const [showAlert, setShowAlert] = useState(false);
+    const { inputValues, handleInputChange, resetForm, setForm } = useForm({
         nome: '',
         rua: '',
         numero: '',
     })
 
+    useEffect(() => {
+        if(id) {
+            const pessoa = getPessoaById(id);
+            setForm(pessoa);
+        }
+    }, [id])
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        addPessoa(inputValues);
+        id ? editPessoa(id, inputValues) : addPessoa(inputValues);
+        setShowAlert(true);
         resetForm();
+        setTimeout(() => {
+            setShowAlert(false);
+        }, 2000)
     }
 
     return (
@@ -22,7 +36,7 @@ export const Form = () => {
                 <button className="btn btn-outline-secondary" onClick={() => nav('/')}>
                     Voltar
                 </button>
-                <h1>Adicionar</h1>
+                <h1>{ id ? 'Editar ' : 'Adicionar '}Pessoa</h1>
                 <div />
             </div>
 
@@ -74,6 +88,16 @@ export const Form = () => {
                     </div>
                 </form>
             </div>
+
+            {
+                showAlert && (
+                    <div className="px-5">
+                        <div className="alert alert-success text-white" role="alert">
+                            Pessoa adicionada.
+                        </div>
+                    </div>
+                )
+            }
         </div>
     )
 }

@@ -25,7 +25,7 @@ export const Lista = () => {
                         </thead>
     
                         <tbody>
-                            <Item />
+                            { pessoas.map(pessoa => <Item pessoa={pessoa} key={pessoa.id} />) }
                         </tbody>
                     </table>
                 </div>
