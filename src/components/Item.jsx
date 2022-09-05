@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { deletePessoa, getListaPessoas } from '../services/localstorage';
 
 export const Item = ({ pessoa, setPessoas }) => {
-    const { id, nome, rua, numero } = pessoa;
+    const { id, nome, rua, numero, cep, regiao, estado } = pessoa;
     const navigate = useNavigate();
 
     const removePessoa = () => {
@@ -15,6 +15,9 @@ export const Item = ({ pessoa, setPessoas }) => {
             <th>{nome}</th>
             <th>{rua}</th>
             <th>{numero}</th>
+            <th>{cep}</th>
+            <th>{regiao}</th>
+            <th>{estado}</th>
             <th>
                 <div className='d-flex gap-3'>
                     <span role='button' className="badge bg-success" onClick={() => navigate(`/editar/${id}`)}>

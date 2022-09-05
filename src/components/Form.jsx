@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Select from 'react-select'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from '../hooks/useForm';
 import { addPessoa, getPessoaById, editPessoa } from '../services/localstorage';
@@ -11,8 +12,60 @@ export const Form = () => {
         nome: '',
         rua: '',
         numero: '',
+        cep: '',
+        regiao: '',
+        estado: '',
     })
 
+    const regiao = [
+        {
+            value: "Sul",
+            label: "Sul"
+        },
+        {
+            value: "Sudeste",
+            label: "Sudeste"
+        },
+    ];
+    
+    const estadosSul = [
+        {
+            value: "SC",
+            label: "SC"
+        },
+        {
+            value: "PR",
+            label: "PR"
+        },
+    ];
+    const estadosSudeste = [
+        {
+            value: "RJ",
+            label: "RJ"
+        },
+        {
+            value: "SP",
+            label: "SP"
+        },
+    ];
+
+
+    const [selected, setSelected] = useState("");
+    const [selectedOption, setSelectedOption] = useState("");
+
+    let estados = null;
+
+    if (selected === "Sul") {
+        estados = estadosSul;
+    } else if (selected === "Sudeste") {
+        estados = estadosSudeste;
+    }
+    
+    const changeSelectOptionHandler = (event) => {
+        setSelected(event.value);
+    };
+
+    
     useEffect(() => {
         if(id) {
             const pessoa = getPessoaById(id);
@@ -22,6 +75,7 @@ export const Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(inputValues)
         id ? editPessoa(id, inputValues) : addPessoa(inputValues);
         setShowAlert(true);
         resetForm();
@@ -79,6 +133,43 @@ export const Form = () => {
                             className='form-control'
                             placeholder='Número'
                         />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="cep" className="form-label mt-2">CEP</label>
+                        <input
+                            id='cep'
+                            name='cep'
+                            type='text'
+                            value={inputValues.cep}
+                            onChange={handleInputChange}
+                            className='form-control'
+                            placeholder='CEP'
+                        />
+                    </div>
+
+
+                    <div className="form-group">
+                        <label htmlFor="regiao" className="form-label mt-2">Região</label>
+                        <Select 
+                            id='regiao'
+                            name='regiao'
+                            options={regiao}
+                            onChange={changeSelectOptionHandler}
+                        >
+                        </Select>
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="estado" className="form-label mt-2">Estado</label>
+                        <Select 
+                            id='estado'
+                            name='estado'
+                            value={selectedOption}
+                            onChange={setSelectedOption}
+                            options={estados}
+                        >
+                        </Select>
                     </div>
 
                     <div className="d-grid gap-2 mt-3">

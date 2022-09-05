@@ -21,6 +21,9 @@ export const Lista = () => {
                                 <th>Nome</th>
                                 <th>Rua</th>
                                 <th>Número</th>
+                                <th>CEP</th>
+                                <th>Regiao</th>
+                                <th>Estado</th>
                             </tr>
                         </thead>
     
