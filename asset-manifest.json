@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/crud-local-storage-react/static/css/main.3db6e243.css",
+    "main.js": "/crud-local-storage-react/static/js/main.1b5d5d59.js",
+    "index.html": "/crud-local-storage-react/index.html",
+    "main.3db6e243.css.map": "/crud-local-storage-react/static/css/main.3db6e243.css.map",
+    "main.1b5d5d59.js.map": "/crud-local-storage-react/static/js/main.1b5d5d59.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3db6e243.css",
+    "static/js/main.1b5d5d59.js"
+  ]
+}
