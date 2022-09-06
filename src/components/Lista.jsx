@@ -24,6 +24,7 @@ export const Lista = () => {
                                 <th>CEP</th>
                                 <th>Regiao</th>
                                 <th>Estado</th>
+                                <th>Cidade</th>
                             </tr>
                         </thead>
     

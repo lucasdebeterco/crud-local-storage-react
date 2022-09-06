@@ -15,6 +15,7 @@ export const Form = () => {
         cep: '',
         regiao: '',
         estado: '',
+        cidade: '',
     })
 
     const regiao = [
@@ -49,22 +50,85 @@ export const Form = () => {
         },
     ];
 
+    const cidadesSantaCatarina = [
+        {
+            value: "Florianópolis",
+            label: "Florianópolis"
+        },
+        {
+            value: "Rio do Sul",
+            label: "Rio do Sul"
+        },
+    ];
 
-    const [selected, setSelected] = useState("");
-    const [selectedOption, setSelectedOption] = useState("");
+    const cidadesParana = [
+        {
+            value: "Maringá",
+            label: "Maringá"
+        },
+        {
+            value: "Curitiba",
+            label: "Curitiba"
+        },
+    ];
+
+    const cidadesRioDeJaneiro = [
+        {
+            value: "Niterói",
+            label: "Niterói"
+        },
+        {
+            value: "Petrópolis",
+            label: "Petrópolis"
+        },
+    ];
+
+    const cidadesSaoPaulo = [
+        {
+            value: "Guarulhos",
+            label: "Guarulhos"
+        },
+        {
+            value: "Campinas",
+            label: "Campinas"
+        },
+    ];
+
+    const [selectedRegiao, setSelectedRegiao] = useState("");
+    const [selectedEstado, setSelectedEstado] = useState("");
+
+    const changeSelectOptionHandlerRegiao = (event) => {
+        inputValues.regiao = event.value
+        setSelectedRegiao(event.value);
+    };
+
+    const changeSelectOptionHandlerEstado = (event) => {
+        inputValues.estado = event.value
+        setSelectedEstado(event.value);
+    };
+
+    const changeSelectOptionHandlerCidade = (event) => {
+        inputValues.cidade = event.value
+    };
 
     let estados = null;
+    let cidades = null;
 
-    if (selected === "Sul") {
+    if (selectedRegiao === "Sul") {
         estados = estadosSul;
-    } else if (selected === "Sudeste") {
+    } else if (selectedRegiao === "Sudeste") {
         estados = estadosSudeste;
     }
     
-    const changeSelectOptionHandler = (event) => {
-        setSelected(event.value);
-    };
-
+    if (selectedEstado === "SC") {
+        cidades = cidadesSantaCatarina;
+    } else if (selectedEstado === "PR") {
+        cidades = cidadesParana;
+    } else if (selectedEstado === "SP") {
+        cidades = cidadesSaoPaulo;
+    } else if (selectedEstado === "RJ") {
+        cidades = cidadesRioDeJaneiro;
+    }
     
     useEffect(() => {
         if(id) {
@@ -75,7 +139,6 @@ export const Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(inputValues)
         id ? editPessoa(id, inputValues) : addPessoa(inputValues);
         setShowAlert(true);
         resetForm();
@@ -155,7 +218,7 @@ export const Form = () => {
                             id='regiao'
                             name='regiao'
                             options={regiao}
-                            onChange={changeSelectOptionHandler}
+                            onChange={changeSelectOptionHandlerRegiao}
                         >
                         </Select>
                     </div>
@@ -165,9 +228,19 @@ export const Form = () => {
                         <Select 
                             id='estado'
                             name='estado'
-                            value={selectedOption}
-                            onChange={setSelectedOption}
+                            onChange={changeSelectOptionHandlerEstado}
                             options={estados}
+                        >
+                        </Select>
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="cidade" className="form-label mt-2">Cidade</label>
+                        <Select 
+                            id='cidade'
+                            name='cidade'
+                            onChange={changeSelectOptionHandlerCidade}
+                            options={cidades}
                         >
                         </Select>
                     </div>
